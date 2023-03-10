@@ -3,6 +3,7 @@ package tech.waves.load
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import ru.tinkoff.gatling.config.SimulationConfig._
+
 package object wavesloadgrpc {
 
   // common http protocol params (eg headers, checks)
