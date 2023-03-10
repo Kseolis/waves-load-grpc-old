@@ -11,6 +11,6 @@ class Debug extends Simulation {
     // default = inject(atOnceUsers(1))
     HttpScenario().inject(constantUsersPerSec(100) during 15),
   ).protocols(
-    httpProtocol.proxy(Proxy("devnet1-htz-nbg1-1.wavesnodes.com", 6869).httpsPort(6869))
+    httpProtocol.proxy(Proxy("devnet1-htz-nbg1-1.wavesnodes.com", 6869).httpsPort(6869)),
   ).maxDuration(testDuration)
 }

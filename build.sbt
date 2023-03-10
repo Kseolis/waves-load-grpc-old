@@ -1,5 +1,7 @@
 import Dependencies._
 
+Global / onChangedBuildSource := ReloadOnSourceChanges
+
 enablePlugins(GatlingPlugin)
 
 lazy val root = (project in file("."))
@@ -12,16 +14,7 @@ lazy val root = (project in file("."))
       ),
     ),
     name := "waves-load-grpc",
-    libraryDependencies ++= gatling,
-    libraryDependencies ++= gelf,
-    libraryDependencies ++= gatlingPicatinny,
-    libraryDependencies ++= janino,
-    libraryDependencies ++= gatlingGrpc,
-    libraryDependencies ++= grpcDeps,
-    libraryDependencies ++= wavesProto,
-    Test / PB.targets := Seq(
-      scalapb.gen() -> (Test / sourceManaged).value
-    ),
+    libraryDependencies ++= gatling ++ gelf ++ gatlingPicatinny ++ janino ++ gatlingGrpc ++ grpcDeps ++ wavesProto ++ wavesTransactions,
     scalacOptions ++= Seq(
       "-encoding",
       "UTF-8",
@@ -33,15 +26,21 @@ lazy val root = (project in file("."))
       "-language:higherKinds",
       "-language:existentials",
       "-language:postfixOps",
+      "-Wconf:cat=deprecation&site=com.google.protobuf.descriptor.FileOptions.*:s",
+      "-Wconf:cat=deprecation&site=com.wavesplatform.api.grpc.*:s",                                // Ignore gRPC warnings
+      "-Wconf:cat=deprecation&site=com.wavesplatform.protobuf.transaction.InvokeScriptResult.*:s", // Ignore deprecated argsBytes
+      "-Wconf:cat=deprecation&site=com.wavesplatform.state.InvokeScriptResult.*:s",
     ),
-
     inConfig(Compile)(
       Seq(
-        PB.targets += scalapb.gen(flatPackage = true) -> sourceManaged.value,
+        doc / sources                := Seq.empty,
+        packageDoc / publishArtifact := false,
+        PB.deleteTargetDirectory     := false,
         PB.protoSources += PB.externalIncludePath.value,
-        PB.generate / includeFilter := { (f: File) =>
-          (** / "waves" / "*.proto").matches(f.toPath)
-        }
-      )
+        PB.targets                   := Seq(
+          PB.gens.java                                            -> (Compile / sourceManaged).value, // Otherwise we get compilation errors
+          scalapb.gen(flatPackage = true, javaConversions = true) -> (Compile / sourceManaged).value / "scalapb",
+        ),
+      ),
     ),
   )
