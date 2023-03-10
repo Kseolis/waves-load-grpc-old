@@ -9,7 +9,6 @@ object HttpScenario {
 }
 
 class HttpScenario extends Simulation {
-  val scn: ScenarioBuilder = scenario("Waves Full Node Scenario")
+  val scn: ScenarioBuilder = scenario("Waves getAddress Node Scenario")
     .exec(HttpActions.getAddress)
-
 }

@@ -9,7 +9,8 @@ class Debug extends Simulation {
 
   setUp(
     // default = inject(atOnceUsers(1))
-    HttpScenario().inject(constantUsersPerSec(100) during 15),
+    HttpScenario().inject(constantUsersPerSec(1) during 1),
+    new CommonScenario().grpc.inject(constantUsersPerSec(100) during 15),
   ).protocols(
     httpProtocol.proxy(Proxy("devnet1-htz-nbg1-1.wavesnodes.com", 6869).httpsPort(6869)),
   ).maxDuration(testDuration)
