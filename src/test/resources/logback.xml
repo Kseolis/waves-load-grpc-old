@@ -10,6 +10,7 @@
             </appender>
         </then>
     </if>
+    <logger name="com.github.phisgr.gatling.grpc" level="TRACE" />
 
     <if condition='property("FILE_LOGGING").contains("ON")'>
         <then>
