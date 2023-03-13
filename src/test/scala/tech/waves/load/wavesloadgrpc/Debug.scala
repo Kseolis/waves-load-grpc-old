@@ -8,16 +8,9 @@ import tech.waves.load.wavesloadgrpc.scenarios._
 class Debug extends Simulation {
 
   setUp(
-    new CommonScenario().grpc.inject(constantUsersPerSec(100) during 15),
-  )
-    .protocols(grpcProtocol)
+    new CommonScenario().grpc // запускаем наш сценарий
+      .inject(constantUsersPerSec(100) during 15),
+
+  ).protocols(grpcProtocol) // работа будет проходить по протоколу, который описан в grpcProtocol
     .maxDuration(testDuration)
-
-/*  setUp(
-    // default = inject(atOnceUsers(1))
-    HttpScenario().inject(constantUsersPerSec(1) during 1),
-
-  ).protocols(
-    httpProtocol.proxy(Proxy("devnet1-htz-nbg1-1.wavesnodes.com", 6869).httpsPort(6869)),
-  ).maxDuration(testDuration)*/
 }

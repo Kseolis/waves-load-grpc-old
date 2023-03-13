@@ -9,7 +9,7 @@ object Dependencies {
   lazy val gelf: Seq[ModuleID]              = Seq("de.siegmar" % "logback-gelf" % "4.0.2")
   lazy val gatlingPicatinny: Seq[ModuleID]  = Seq("ru.tinkoff" %% "gatling-picatinny" % "0.13.0")
   lazy val janino: Seq[ModuleID]            = Seq("org.codehaus.janino" % "janino" % "3.1.9")
-  lazy val gatlingGrpc: Seq[ModuleID]       = Seq("com.github.phisgr" % "gatling-grpc" % "0.15.1" % "test")
+  lazy val gatlingGrpc: Seq[ModuleID]       = Seq("com.github.phisgr" % "gatling-grpc" % "0.16.0" % "test")
   lazy val grpcDeps: Seq[ModuleID]          = Seq(
     "io.grpc"               % "grpc-netty"           % scalapb.compiler.Version.grpcJavaVersion,
     "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
@@ -26,6 +26,6 @@ object Dependencies {
     ),
   )
   lazy val wavesTransactions: Seq[ModuleID] = Seq(
-    "com.wavesplatform" % "waves-transactions" % "1.2.1" excludeAll ExclusionRule("com.wavesplatform", "protobuf-schemas"),
+    "com.wavesplatform" % "waves-transactions" % "1.2.3" excludeAll ExclusionRule("com.wavesplatform", "protobuf-schemas"),
   )
 }

@@ -3,26 +3,21 @@ package tech.waves.load.wavesloadgrpc
 import io.gatling.core.Predef._
 import ru.tinkoff.gatling.config.SimulationConfig._
 import ru.tinkoff.gatling.influxdb.Annotations
+import tech.waves.load.mygrpc.grpcProtocol
 import tech.waves.load.wavesloadgrpc.scenarios._
 
 class MaxPerformance extends Simulation with Annotations {
 
   setUp(
-    HttpScenario().inject(
-      // интенсивность на ступень
-      incrementUsersPerSec((intensity / stagesNumber).toInt)
-        // Количество ступеней
-        .times(stagesNumber)
-        // Длительность полки
-        .eachLevelLasting(stageDuration)
-        // Длительность разгона
-        .separatedByRampsLasting(rampDuration)
-        // Начало нагрузки с
-        .startingFrom(0),
+    new CommonScenario().grpc.inject(
+      incrementUsersPerSec((intensity / stagesNumber).toInt) // интенсивность на ступень
+        .times(stagesNumber) // Количество ступеней
+        .eachLevelLasting(stageDuration) // Длительность полки
+        .separatedByRampsLasting(rampDuration) // Длительность разгона
+        .startingFrom(0), // Начало нагрузки с
     ),
-  ).protocols(
-    httpProtocol,
-    // общая длительность теста
-  ).maxDuration(testDuration)
+
+  ).protocols(grpcProtocol)
+    .maxDuration(testDuration) // общая длительность теста
 
 }
