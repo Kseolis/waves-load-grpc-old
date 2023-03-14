@@ -2,6 +2,12 @@
 
 Template project for Gatling performance tests
 
+## Running tests
+
+```
+sbt: Test/run
+```
+
 ## Project structure
 
 ```
