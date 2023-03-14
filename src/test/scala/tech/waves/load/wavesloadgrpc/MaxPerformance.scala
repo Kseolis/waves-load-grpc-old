@@ -10,11 +10,11 @@ class MaxPerformance extends Simulation with Annotations {
 
   setUp(
     new CommonScenario().grpc.inject(
-      incrementUsersPerSec((intensity / stagesNumber).toInt) // интенсивность на ступень
+      incrementUsersPerSec(300) // интенсивность на ступень
         .times(stagesNumber) // Количество ступеней
         .eachLevelLasting(stageDuration) // Длительность полки
         .separatedByRampsLasting(rampDuration) // Длительность разгона
-        .startingFrom(0), // Начало нагрузки с
+        .startingFrom(300), // Начало нагрузки с
     ),
 
   ).protocols(grpcProtocol)
