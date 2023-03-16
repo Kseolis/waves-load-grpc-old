@@ -9,7 +9,7 @@ class Debug extends Simulation {
 
   setUp(
     new CommonScenario().grpc // запускаем наш сценарий
-      .inject(constantUsersPerSec(100) during 15),
+      .inject(atOnceUsers(1)),
 
   ).protocols(grpcProtocol) // работа будет проходить по протоколу, который описан в grpcProtocol
     .maxDuration(testDuration)
