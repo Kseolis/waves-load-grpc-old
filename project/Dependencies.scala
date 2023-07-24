@@ -1,13 +1,12 @@
 import sbt.*
 
 object Dependencies {
-  lazy val gatling: Seq[ModuleID] = Seq(
+  lazy val gatling: Seq[ModuleID]           = Seq(
     "io.gatling.highcharts" % "gatling-charts-highcharts",
     "io.gatling"            % "gatling-test-framework",
   ).map(_ % "3.9.2" % Test)
-
+  lazy val razem: Seq[ModuleID]             = Seq("io.razem" %% "scala-influxdb-client" % "0.6.3")
   lazy val gelf: Seq[ModuleID]              = Seq("de.siegmar" % "logback-gelf" % "4.0.2")
-  lazy val gatlingPicatinny: Seq[ModuleID]  = Seq("ru.tinkoff" %% "gatling-picatinny" % "0.13.0")
   lazy val janino: Seq[ModuleID]            = Seq("org.codehaus.janino" % "janino" % "3.1.9")
   lazy val gatlingGrpc: Seq[ModuleID]       = Seq("com.github.phisgr" % "gatling-grpc" % "0.16.0" % "test")
   lazy val grpcDeps: Seq[ModuleID]          = Seq(
