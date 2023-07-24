@@ -9,7 +9,7 @@ class MaxPerformance extends Simulation {
   val rampDuration: FiniteDuration  = 1 minutes
   val stageDuration: FiniteDuration = 3 minutes
   val stagesNumber                  = 6
-  val intensity                     = 1500
+  val intensity                     = 15
   val maxDuration: FiniteDuration   = (rampDuration + stageDuration) * stagesNumber
 
   setUp(

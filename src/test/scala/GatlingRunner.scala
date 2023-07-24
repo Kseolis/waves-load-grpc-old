@@ -4,7 +4,7 @@ import io.gatling.core.config.GatlingPropertiesBuilder
 object GatlingRunner {
 
   def main(args: Array[String]): Unit = {
-    val simulationClass = classOf[MaxPerformance].getName
+    val simulationClass = classOf[Stability].getName
 
     val props = new GatlingPropertiesBuilder
     props.simulationClass(simulationClass)
