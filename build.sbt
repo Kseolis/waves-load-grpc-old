@@ -14,7 +14,7 @@ lazy val root = (project in file("."))
       ),
     ),
     name := "waves-load-grpc",
-    libraryDependencies ++= gatling ++ gelf ++ gatlingPicatinny ++ janino ++ gatlingGrpc ++ grpcDeps ++ wavesProto ++ wavesTransactions,
+    libraryDependencies ++= gatling ++ gelf ++ razem ++ janino ++ gatlingGrpc ++ grpcDeps ++ wavesProto ++ wavesTransactions,
     scalacOptions ++= Seq(
       "-encoding",
       "UTF-8",
